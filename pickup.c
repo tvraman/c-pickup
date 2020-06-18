@@ -40,11 +40,11 @@ int main (int argC, char  **argV) {
       } else {
         break;
       }
-    }
+    } /*  done updating fib_base  */
 
     int k = n -fib_base;
     /*  check for 3k <n rule */ 
-    while (3*k >= n) {
+    while (3*k >= n) { /*  reduce game */
       /*  Update fib_base */
       for (int i = 0; i<MAX_SIZE; i++ ){ /*  update fib_base */ 
         if (fibs[i] < k)   {
@@ -53,8 +53,9 @@ int main (int argC, char  **argV) {
           break;
         }
       }
-      printf("Move: %d\n", k - fib_base);
-    }
-
+      printf("k: %d, fib_base: %d\n", k, fib_base);
+      k = k - fib_base;
+    } /*  done reducing game */
+    printf("move: %d\n", k);
   }
 }
