@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_SIZE 20
+#define MAX_SIZE 15
 
 int main (int argC, char  **argV) {
   printf("How many sticks would you like to play with?\n");
@@ -14,7 +14,7 @@ int main (int argC, char  **argV) {
   while (fibs [index -1] < n) {
     fibs[index] = fibs[index -1] + fibs[index -2];
     if (index == MAX_SIZE){
-      printf("You'll get bored with such a large %d\n", n);
+      printf("You'll get bored with such a large number of sticks: %d\n", MAX_SIZE);
       exit(0);
     }
     index++;
