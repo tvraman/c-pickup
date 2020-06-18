@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_SIZE 15
-
+int next_move (int fibs[], int n);
 int main (int argC, char  **argV) {
   printf("How many sticks would you like to play with?\n");
-  int n;
+  int n, k;
   scanf("%d", &n);
   printf("Playing with %d sticks.\n", n);
   int fibs[MAX_SIZE];
@@ -31,31 +31,49 @@ int main (int argC, char  **argV) {
     }
   }
 
-  if (fib_p != 1){
+  if (fib_p != 1){ /*  first move */
     printf("I play first.\n");
+    k = next_move (fibs, n);
+    n -= k;
+    limit = 2*k;
+    printf("I pick %d sticks. %d sticks left; You can pick up to %d.\n",k, n, limit);
+  } /*  first turn */
+  while (n > 0){ /*  take turns */
+    printf("How many sticks do you pick?\n");
+    scanf("%d", &k);
+    if (k > limit){
+      printf("You cannot   pick more than %d sticks.\n", limit);
+      exit(1);
+    }
+    n -= k;
+    limit = 2*k;
+    next_move(fibs, n);
+  }
+}
+int next_move (int fibs[], int n) {
+  int base, k;
+  for (int i = 0; i<MAX_SIZE; i++ ){ /*  update base */ 
+    if (fibs[i] < n)   {
+      base = fibs[i];
+    } else {
+      break;
+    }
+  } /*  done updating base  */
 
-    for (int i = 0; i<MAX_SIZE; i++ ){ /*  update fib_base */ 
-      if (fibs[i] < n)   {
-        fib_base = fibs[i];
+  k = n -base;
+  /*  check for 3k <n rule */ 
+  while (3*k >= n) { /*  reduce game */
+    /*  Update base */
+    for (int i = 0; i<MAX_SIZE; i++ ){ /*  update base */ 
+      if (fibs[i] < k)   {
+        base = fibs[i];
       } else {
         break;
       }
-    } /*  done updating fib_base  */
-
-    int k = n -fib_base;
-    /*  check for 3k <n rule */ 
-    while (3*k >= n) { /*  reduce game */
-      /*  Update fib_base */
-      for (int i = 0; i<MAX_SIZE; i++ ){ /*  update fib_base */ 
-        if (fibs[i] < k)   {
-          fib_base = fibs[i];
-        } else {
-          break;
-        }
-      }
-      printf("k: %d, fib_base: %d\n", k, fib_base);
-      k = k - fib_base;
-    } /*  done reducing game */
-    printf("move: %d\n", k);
-  }
+    }
+    k = k - base;
+  } /*  done reducing game */
+  return k;
+    
+    
 }
