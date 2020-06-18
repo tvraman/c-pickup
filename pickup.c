@@ -1,16 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_SIZE 15
-int next_move(int fibs[], int n, int limit);
+int next_move(int fibs[], int n, int limit)
+{
+	int base, k;
+	for (int i = 0; i < MAX_SIZE; i++) {	/*  update base */
+		if (fibs[i] < n) {
+			base = fibs[i];
+		} else {
+			break;
+		}
+	}			/*  done updating base  */
+
+	k = n - base;
+	/*  check for 3k <n rule */
+	while ((3 * k >= n) || (k > limit)) {	/*  reduce game */
+		for (int i = 0; i < MAX_SIZE; i++) {	/*  update base */
+			if (fibs[i] < k) {
+				base = fibs[i];
+			} else {
+				break;
+			}
+		}
+		k = k - base;
+	}			/*  done reducing game */
+	return k;
+}
+
 int main()
 {
 	printf("Pick the number of sticks (>2) \n");
 	int n, k;
 	scanf("%d", &n);
-	if (n <= 2) {
-		printf("Game is meaningless for n =1 and n =2.\n");
-		exit(0);
-	}
 	printf("Playing with %d sticks.\n", n);
 	int fibs[MAX_SIZE];
 	fibs[0] = 1;
@@ -72,32 +93,4 @@ int main()
 			     k, n, limit);
 		}
 	}
-}
-
-int next_move(int fibs[], int n, int limit)
-{
-	int base, k;
-	for (int i = 0; i < MAX_SIZE; i++) {	/*  update base */
-		if (fibs[i] < n) {
-			base = fibs[i];
-		} else {
-			break;
-		}
-	}			/*  done updating base  */
-
-	k = n - base;
-	/*  check for 3k <n rule */
-	while ((3 * k >= n)
-	       || (k > limit)) {	/*  reduce game */
-		/*  Update base */
-		for (int i = 0; i < MAX_SIZE; i++) {	/*  update base */
-			if (fibs[i] < k) {
-				base = fibs[i];
-			} else {
-				break;
-			}
-		}
-		k = k - base;
-	}			/*  done reducing game */
-	return k;
 }
