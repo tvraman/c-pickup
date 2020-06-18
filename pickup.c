@@ -13,6 +13,4 @@ fibs[1] = 2;
    fibs[index] = fibs[index -1] + fibs[index -2];
    index++;
 }
- 
- 
 }
