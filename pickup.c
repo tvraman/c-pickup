@@ -8,7 +8,7 @@ int main (int argC, char  **argV) {
   scanf("%d", &n);
   if (n <= 2) {
     printf("Game is meaningless for n =1 and n =2.\n");
-  exit(0);
+    exit(0);
   }
   printf("Playing with %d sticks.\n", n);
   int fibs[MAX_SIZE];
@@ -45,7 +45,7 @@ int main (int argC, char  **argV) {
   while (n > 0){ /*  take turns */
     printf("How many sticks do you pick?\n");
     scanf("%d", &k);
-if (k > limit){
+    if (k > limit){
       printf("You cannot   pick more than %d sticks.\n", limit);
       exit(1);
     }
