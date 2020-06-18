@@ -3,9 +3,13 @@
 #define MAX_SIZE 15
 int next_move (int fibs[], int n);
 int main (int argC, char  **argV) {
-  printf("How many sticks would you like to play with?\n");
+  printf("Pick a number greater than 2, How many sticks would you like to play with?\n");
   int n, k;
   scanf("%d", &n);
+  if (n <= 2) {
+    printf("Game is meaningless for n =1 and n =2.\n");
+  exit(0);
+  }
   printf("Playing with %d sticks.\n", n);
   int fibs[MAX_SIZE];
   fibs[0] = 1;
@@ -41,15 +45,31 @@ int main (int argC, char  **argV) {
   while (n > 0){ /*  take turns */
     printf("How many sticks do you pick?\n");
     scanf("%d", &k);
-    if (k > limit){
+if (k > limit){
       printf("You cannot   pick more than %d sticks.\n", limit);
       exit(1);
     }
     n -= k;
     limit = 2*k;
-    next_move(fibs, n);
+    printf("You picked %d sticks, %d sticks left.\n", k, n);
+    
+    if (limit >=n) {
+      printf ("I pick %d sticks and win!\n", n);
+      exit(0);
+    }
+    k =next_move(fibs, n);
+    n -=k;
+    limit = 2*k; 
+    if  (n == 0) {
+      printf ("I picked %d sticks and won!", k);
+      exit(0);
+    } else {
+      printf("I pick %d sticks. %d sticks left; You can pick up to %d.\n",k, n, limit);
+    }
   }
 }
+
+
 int next_move (int fibs[], int n) {
   int base, k;
   for (int i = 0; i<MAX_SIZE; i++ ){ /*  update base */ 
@@ -74,6 +94,4 @@ int next_move (int fibs[], int n) {
     k = k - base;
   } /*  done reducing game */
   return k;
-    
-    
 }
