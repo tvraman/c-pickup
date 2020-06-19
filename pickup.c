@@ -13,8 +13,8 @@ int next_move(int fibs[], int n, int limit) {
   } /*  done updating base  */
   k = current - base;
   /*  check for 3k <n rule */
-  while ((3 * k >= current) || (k > limit)) {  /*  reduce game */
-    current =k;
+  while ((3 * k >= current) || (k > limit)) { /*  reduce game */
+    current = k;
     for (int i = 0; i < MAX_SIZE; i++) { /*  update base */
       if (fibs[i] < current) {
         base = fibs[i];
