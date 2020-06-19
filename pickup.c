@@ -54,33 +54,30 @@ int main() {
     k = next_move(fibs, n, limit);
     n -= k;
     limit = 2 * k;
-    printf(
-        "I pick %d sticks. %d sticks left,You can pick  between 1 and ;  %d.\n",
-        k, n, limit);
+    printf("I pick %d. %d  left; You can pick up to %d.\n", k, n, limit);
   }               /*  first turn */
   while (n > 0) { /*  take turns */
     printf("How many sticks do you pick?\n");
     scanf("%d", &k);
     if (k > limit) {
-      printf("You cannot   pick more than %d sticks.\n", limit);
+      printf("You cannot   pick more than %d.\n", limit);
       continue;
     }
     n -= k;
     limit = 2 * k;
-    printf("You picked %d sticks, %d sticks left.\n", k, n);
+    printf("You picked %d, %d left.\n", k, n);
     if (limit >= n) {
-      printf("I pick %d sticks and win!\n", n);
+      printf("I pick %d and win!\n", n);
       exit(0);
     }
     k = next_move(fibs, n, limit);
     n -= k;
     limit = 2 * k;
     if (n == 0) {
-      printf("I picked %d sticks and won!", k);
+      printf("I picked %d and won!", k);
       exit(0);
     } else {
-      printf("I pick %d sticks. %d sticks left; You can pick up to %d.\n", k, n,
-             limit);
+      printf("I pick %d. %d  left; You can pick up to %d.\n", k, n, limit);
     }
   }
 }
