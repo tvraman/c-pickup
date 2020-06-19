@@ -29,8 +29,8 @@ int next_move(const int fibs[], int n, int limit) {
 }
 int main() {
   printf("Pick number of sticks (>2) \n");
-  int n;
-  int k;
+  uint n;
+  uint k;
   scanf("%d", &n);
   printf("Playing with %d sticks.\n", n);
   int fibs[MAX_SIZE];
