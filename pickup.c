@@ -40,7 +40,7 @@ int main() {
   while (fibs[index - 1] < n) {
     fibs[index] = fibs[index - 1] + fibs[index - 2];
     if (index == MAX_SIZE) {
-      printf("Pick a smaller number to avoid boredom");
+      printf("Pick a smaller number to avoid boredom\n");
       exit(0);
     }
     index++;
