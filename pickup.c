@@ -17,12 +17,12 @@ int fib_base (const int fibs [], int current) {
 int next_move(const int fibs[], int n, int limit) {
   int current = n;
   int k;
-  int base = fib_base(current);
+  int base = fib_base(fibs, current);
   k = current - base;
   /*  check for 3k <n rule */
   while ((3 * k >= current) || (k > limit)) { /*  reduce game */
     current = k;
-    base=fib_base(current);
+    base=fib_base(fibs, current);
     k = current - base;
   } /*  done reducing game */
   return k;
