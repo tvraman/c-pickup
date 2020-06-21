@@ -14,7 +14,7 @@ int fib_base(const int fibs[], const int current) {
   return base;
 }
 
-int next_move(const int fibs[], int n, int limit) {
+int next_move(const int fibs[], const int n, const int limit) {
   int current = n;
   int k;
   int base = fib_base(fibs, current);
@@ -40,7 +40,7 @@ int main() {
   printf("Pick number of sticks between 2 and 2000.\n");
   scanf("%d", &n);
   if ((n < 2) || (2000 < n)) {
-    printf("Pick  a number between 2 and 2000.\n", fibs[MAX_SIZE - 1]);
+    printf("Pick  a number between 2 and 2000.\n");
     exit(0);
   }
 
